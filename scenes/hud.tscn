@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://gy6bwuf0vcol"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_1cs00"]
+[ext_resource type="Texture2D" uid="uid://cjo73v5vty6rk" path="res://assets/keyboard_keys/z_key_up.png" id="1_jgste"]
+[ext_resource type="Texture2D" uid="uid://dbe15x6tysuds" path="res://assets/keyboard_keys/z_key_down.png" id="2_2syui"]
+[ext_resource type="Texture2D" uid="uid://pqsvcgwnmokf" path="res://assets/items/apple/single_apple.png" id="4_t2mej"]
+[ext_resource type="FontFile" uid="uid://2w26sh8ko2dn" path="res://assets/fonts/minecraft.ttf" id="5_gppry"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1cs00")
+
+[node name="ActionButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 240.0
+offset_right = 35.0
+offset_bottom = 261.0
+toggle_mode = true
+texture_normal = ExtResource("1_jgste")
+texture_pressed = ExtResource("2_2syui")
+stretch_mode = 3
+
+[node name="Container" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 20.0
+offset_right = 32.0
+offset_bottom = 20.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 2
+offset_top = -8.0
+offset_right = 32.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("5_gppry")
+text = "x 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRec" type="TextureRect" parent="Container"]
+layout_mode = 2
+offset_left = -36.0
+offset_top = -24.0
+offset_right = -4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_t2mej")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://op3xs2fdb8uy"]
+
+[ext_resource type="Texture2D" uid="uid://dppirdweitu0b" path="res://assets/items/crate.png" id="1_gnl8s"]
+[ext_resource type="Script" path="res://scripts/crate.gd" id="1_ui3g7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l67fg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlv4k"]
+size = Vector2(28, 28)
+
+[node name="Crate" type="RigidBody2D"]
+z_index = 6
+contact_monitor = true
+max_contacts_reported = 50000
+script = ExtResource("1_ui3g7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gnl8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l67fg")
+debug_color = Color(0.787947, 0.0996937, 1, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_mlv4k")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
