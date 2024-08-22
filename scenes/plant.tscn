@@ -1,11 +1,48 @@
-[gd_scene load_steps=10 format=3 uid="uid://iwsev2lgx1we"]
+[gd_scene load_steps=18 format=3 uid="uid://iwsev2lgx1we"]
 
 [ext_resource type="Script" path="res://scripts/plant.gd" id="1_kqeop"]
 [ext_resource type="Texture2D" uid="uid://dun566slt4f2v" path="res://assets/enemies/plant/attack.png" id="2_1if8s"]
+[ext_resource type="PackedScene" uid="uid://th732w216ayt" path="res://scenes/kill_zone.tscn" id="3_rw24f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ncsk"]
 radius = 8.0
 height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_phgcf"]
+height = 36.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqohs"]
+size = Vector2(464, 23)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7cq6j"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gl4ve"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4t4oj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t5l3"]
+break_loop_at_end = true
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jqx0g"]
+break_loop_at_end = true
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_c8f68"]
+states/Start/position = Vector2(179, 94)
+states/attack/node = SubResource("AnimationNodeAnimation_7cq6j")
+states/attack/position = Vector2(412, 210)
+states/idle/node = SubResource("AnimationNodeAnimation_gl4ve")
+states/idle/position = Vector2(388, 94)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_4t4oj"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_8t5l3"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_jqx0g")]
+graph_offset = Vector2(-6, 49)
 
 [sub_resource type="Animation" id="Animation_wljso"]
 length = 0.001
@@ -178,40 +215,40 @@ _data = {
 "idle": SubResource("Animation_4hq4q")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqohs"]
-size = Vector2(328, 22)
-
 [node name="Plant" type="CharacterBody2D"]
 script = ExtResource("1_kqeop")
-direction = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1if8s")
 hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(4, 4)
 shape = SubResource("CapsuleShape2D_8ncsk")
+
+[node name="KillZone" parent="." instance=ExtResource("3_rw24f")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(4, 4)
+shape = SubResource("CapsuleShape2D_phgcf")
+
+[node name="AttackZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone"]
+position = Vector2(4, 6)
+shape = SubResource("RectangleShape2D_bqohs")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_c8f68")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_attacking = false
+parameters/conditions/is_idle = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_32fb0")
 }
-autoplay = "idle"
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-26, -2)
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(4, 4)
-shape = SubResource("RectangleShape2D_bqohs")
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="AttackZone" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="AttackZone" to="." method="_on_area_2d_body_exited"]

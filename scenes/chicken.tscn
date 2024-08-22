@@ -1,9 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://b4ed1at33sp4y"]
+[gd_scene load_steps=35 format=3 uid="uid://b4ed1at33sp4y"]
 
 [ext_resource type="Script" path="res://scripts/chicken.gd" id="1_1n50w"]
 [ext_resource type="Texture2D" uid="uid://fokjdo8apoet" path="res://assets/enemies/chicken/idle.png" id="1_221ah"]
 [ext_resource type="Texture2D" uid="uid://qlthwx780ucl" path="res://assets/enemies/chicken/run.png" id="2_qr0hp"]
-[ext_resource type="PackedScene" uid="uid://th732w216ayt" path="res://scenes/kill_zone.tscn" id="4_oa0q2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tklp"]
 atlas = ExtResource("1_221ah")
@@ -212,15 +211,15 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mid3x"]
-height = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_odmxd"]
+height = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ic2q5"]
-size = Vector2(328, 24)
+size = Vector2(256, 18)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ir7vv"]
 radius = 12.0
-height = 24.0
+height = 28.0
 
 [node name="Chicken" type="CharacterBody2D"]
 script = ExtResource("1_1n50w")
@@ -232,21 +231,30 @@ autoplay = "idle"
 frame_progress = 0.467241
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 6)
-shape = SubResource("CapsuleShape2D_mid3x")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_odmxd")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(2, -10)
+[node name="AttackZone" type="Area2D" parent="."]
+position = Vector2(0, 8)
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 14)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone"]
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_ic2q5")
 
-[node name="KillZone" parent="." instance=ExtResource("4_oa0q2")]
+[node name="Hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(0, 4)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 6)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ir7vv")
+debug_color = Color(0.854902, 0.0431373, 0, 0.419608)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="RestTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]
+[connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

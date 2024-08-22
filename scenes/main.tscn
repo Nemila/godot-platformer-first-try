@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=4 uid="uid://doiyc6nrnm5uh"]
+[gd_scene load_steps=15 format=4 uid="uid://doiyc6nrnm5uh"]
 
 [ext_resource type="PackedScene" uid="uid://wtib44x4vuxi" path="res://scenes/player.tscn" id="1_ksmph"]
-[ext_resource type="PackedScene" uid="uid://b4ed1at33sp4y" path="res://scenes/chicken.tscn" id="2_76x20"]
-[ext_resource type="Texture2D" uid="uid://rs4dhway15gf" path="res://assets/backgrounds/Brown.png" id="3_26kd6"]
+[ext_resource type="Texture2D" uid="uid://rs4dhway15gf" path="res://assets/backgrounds/brown.png" id="3_26kd6"]
 [ext_resource type="Texture2D" uid="uid://bbkw58ksck5fr" path="res://assets/backgrounds/terrain.png" id="3_cfmwq"]
 [ext_resource type="PackedScene" uid="uid://dp4lygw7dxmna" path="res://scenes/spike.tscn" id="4_4xmb3"]
 [ext_resource type="PackedScene" uid="uid://d1jpxx2n46wru" path="res://scenes/apple.tscn" id="6_v4puq"]
 [ext_resource type="PackedScene" uid="uid://gy6bwuf0vcol" path="res://scenes/hud.tscn" id="7_0imwo"]
+[ext_resource type="PackedScene" uid="uid://b4ed1at33sp4y" path="res://scenes/chicken.tscn" id="9_c74x1"]
 [ext_resource type="PackedScene" uid="uid://op3xs2fdb8uy" path="res://scenes/crate.tscn" id="10_krjqb"]
 [ext_resource type="Script" path="res://scripts/control.gd" id="11_7ycpy"]
+[ext_resource type="PackedScene" uid="uid://iwsev2lgx1we" path="res://scenes/plant.tscn" id="11_gcd3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ygso"]
 texture = ExtResource("3_26kd6")
@@ -320,12 +321,9 @@ sources/0 = SubResource("TileSetAtlasSource_sju67")
 unique_name_in_owner = true
 script = ExtResource("11_7ycpy")
 
-[node name="Chicken" parent="Control" instance=ExtResource("2_76x20")]
-position = Vector2(-406, 110)
-
 [node name="Player" parent="." instance=ExtResource("1_ksmph")]
 unique_name_in_owner = true
-position = Vector2(38, 228)
+position = Vector2(48, 228)
 
 [node name="HUD" parent="Player" instance=ExtResource("7_0imwo")]
 offset_left = -240.0
@@ -427,4 +425,10 @@ position = Vector2(-592, 210)
 position = Vector2(-86, 184)
 
 [node name="Crate" parent="." instance=ExtResource("10_krjqb")]
-position = Vector2(446, 180)
+position = Vector2(418, 174)
+
+[node name="Chicken" parent="." instance=ExtResource("9_c74x1")]
+position = Vector2(298, 124)
+
+[node name="Plant" parent="." instance=ExtResource("11_gcd3d")]
+position = Vector2(152, 234)

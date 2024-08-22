@@ -21,10 +21,10 @@ texture = ExtResource("1_gnl8s")
 shape = SubResource("RectangleShape2D_l67fg")
 debug_color = Color(0.787947, 0.0996937, 1, 0.42)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_mlv4k")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_area_2d_body_exited"]
