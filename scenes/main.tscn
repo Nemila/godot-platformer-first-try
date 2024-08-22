@@ -1,16 +1,14 @@
-[gd_scene load_steps=19 format=4 uid="uid://doiyc6nrnm5uh"]
+[gd_scene load_steps=14 format=4 uid="uid://doiyc6nrnm5uh"]
 
 [ext_resource type="PackedScene" uid="uid://wtib44x4vuxi" path="res://scenes/player.tscn" id="1_ksmph"]
+[ext_resource type="PackedScene" uid="uid://b4ed1at33sp4y" path="res://scenes/chicken.tscn" id="2_76x20"]
 [ext_resource type="Texture2D" uid="uid://rs4dhway15gf" path="res://assets/backgrounds/Brown.png" id="3_26kd6"]
 [ext_resource type="Texture2D" uid="uid://bbkw58ksck5fr" path="res://assets/backgrounds/terrain.png" id="3_cfmwq"]
 [ext_resource type="PackedScene" uid="uid://dp4lygw7dxmna" path="res://scenes/spike.tscn" id="4_4xmb3"]
 [ext_resource type="PackedScene" uid="uid://d1jpxx2n46wru" path="res://scenes/apple.tscn" id="6_v4puq"]
-[ext_resource type="PackedScene" uid="uid://bp6ux61cw1mij" path="res://scenes/trampoline.tscn" id="6_vq4mo"]
 [ext_resource type="PackedScene" uid="uid://gy6bwuf0vcol" path="res://scenes/hud.tscn" id="7_0imwo"]
 [ext_resource type="PackedScene" uid="uid://op3xs2fdb8uy" path="res://scenes/crate.tscn" id="10_krjqb"]
 [ext_resource type="Script" path="res://scripts/control.gd" id="11_7ycpy"]
-[ext_resource type="PackedScene" uid="uid://dcg03dvw6l82j" path="res://scenes/moving_platform.tscn" id="11_fy2mk"]
-[ext_resource type="PackedScene" uid="uid://iwsev2lgx1we" path="res://scenes/plant.tscn" id="11_gcd3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ygso"]
 texture = ExtResource("3_26kd6")
@@ -316,49 +314,18 @@ texture = ExtResource("3_cfmwq")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sju67")
 
-[sub_resource type="Animation" id="Animation_tc5hj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(136, 144)]
-}
-
-[sub_resource type="Animation" id="Animation_q72i2"]
-resource_name = "move"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(136, 112), Vector2(136, 240)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_eubb3"]
-_data = {
-"RESET": SubResource("Animation_tc5hj"),
-"move": SubResource("Animation_q72i2")
-}
-
 [node name="Main" type="Node2D"]
+
+[node name="Control" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_7ycpy")
+
+[node name="Chicken" parent="Control" instance=ExtResource("2_76x20")]
+position = Vector2(-406, 110)
 
 [node name="Player" parent="." instance=ExtResource("1_ksmph")]
 unique_name_in_owner = true
-position = Vector2(134, 116)
+position = Vector2(38, 228)
 
 [node name="HUD" parent="Player" instance=ExtResource("7_0imwo")]
 offset_left = -240.0
@@ -457,26 +424,7 @@ position = Vector2(-568, 112)
 position = Vector2(-592, 210)
 
 [node name="Apple4" parent="Apples" instance=ExtResource("6_v4puq")]
-position = Vector2(-86, 196)
-
-[node name="Trampoline" parent="." instance=ExtResource("6_vq4mo")]
-position = Vector2(278, 144)
+position = Vector2(-86, 184)
 
 [node name="Crate" parent="." instance=ExtResource("10_krjqb")]
 position = Vector2(446, 180)
-
-[node name="MovingPlatform" parent="." instance=ExtResource("11_fy2mk")]
-position = Vector2(136, 144)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform"]
-libraries = {
-"": SubResource("AnimationLibrary_eubb3")
-}
-autoplay = "move"
-
-[node name="Control" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("11_7ycpy")
-
-[node name="Plant" parent="." instance=ExtResource("11_gcd3d")]
-position = Vector2(102, 254)

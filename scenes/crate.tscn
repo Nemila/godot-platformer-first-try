@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l67fg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlv4k"]
-size = Vector2(28, 28)
+size = Vector2(24, 24)
 
 [node name="Crate" type="RigidBody2D"]
 z_index = 6
