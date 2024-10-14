@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="platformer first try"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://ressources/default_bus_layout.tres"
 
 [autoload]
 

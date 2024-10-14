@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=3 uid="uid://de45rl7t8jnrr"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_p5r3p"]
+[ext_resource type="FontFile" uid="uid://d34rqyhjya1uy" path="res://assets/fonts/Poppins-SemiBold.ttf" id="4_h816r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hu1je"]
+bg_color = Color(0.140447, 0.140447, 0.140447, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6m7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txryl"]
+bg_color = Color(0.117647, 0.12549, 0.117647, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.509804, 0.0666667, 0.192157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgytj"]
+bg_color = Color(0.117647, 0.12549, 0.117647, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.780392, 0.145098, 0.243137, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
+anti_aliasing = false
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p5r3p")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hu1je")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -41.5
+offset_right = 46.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0.780392, 0.145098, 0.243137, 1)
+theme_override_colors/font_hover_color = Color(0.509804, 0.0666667, 0.192157, 1)
+theme_override_colors/font_pressed_color = Color(0.780392, 0.145098, 0.243137, 1)
+theme_override_colors/font_focus_color = Color(0.780392, 0.145098, 0.243137, 1)
+theme_override_colors/font_color = Color(0.780392, 0.145098, 0.243137, 1)
+theme_override_fonts/font = ExtResource("4_h816r")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t6m7s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txryl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lgytj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lgytj")
+text = "Play"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0.780392, 0.145098, 0.243137, 1)
+theme_override_colors/font_hover_color = Color(0.509804, 0.0666667, 0.192157, 1)
+theme_override_colors/font_pressed_color = Color(0.780392, 0.145098, 0.243137, 1)
+theme_override_colors/font_focus_color = Color(0.780392, 0.145098, 0.243137, 1)
+theme_override_colors/font_color = Color(0.780392, 0.145098, 0.243137, 1)
+theme_override_fonts/font = ExtResource("4_h816r")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t6m7s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txryl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lgytj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lgytj")
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

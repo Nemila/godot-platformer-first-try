@@ -1,145 +1,60 @@
-[gd_scene load_steps=26 format=3 uid="uid://d1jpxx2n46wru"]
+[gd_scene load_steps=9 format=3 uid="uid://d1jpxx2n46wru"]
 
 [ext_resource type="Script" path="res://scripts/apple.gd" id="1_8uyh8"]
 [ext_resource type="AudioStream" uid="uid://cw4i87ktfmrly" path="res://assets/sounds/coin01.wav" id="2_qm21o"]
 [ext_resource type="Texture2D" uid="uid://dxq1vutwoo1y2" path="res://assets/items/apple/apple_spritesheet.png" id="3_7lskt"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mtuvh"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tlvyn"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x5oo6"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jm7ci"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lw7y4"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8pdvv"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bafc4"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7a3q5"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nvsau"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(256, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mpfr8"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(288, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wyx0w"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(320, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2p16c"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(352, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iy130"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(384, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8c2k1"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(416, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_be7r1"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(448, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3mf61"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(480, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rceiy"]
-atlas = ExtResource("3_7lskt")
-region = Rect2(512, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ljv55"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mtuvh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tlvyn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x5oo6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jm7ci")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lw7y4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8pdvv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bafc4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7a3q5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nvsau")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mpfr8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wyx0w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2p16c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iy130")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8c2k1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_be7r1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3mf61")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rceiy")
-}],
-"loop": true,
-"name": &"default",
-"speed": 20.0
-}]
+[ext_resource type="Texture2D" uid="uid://c3mqwa20q26q1" path="res://assets/items/apple/collected.png" id="4_8xe5g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2lso8"]
 radius = 6.0
 
-[sub_resource type="Animation" id="Animation_yhicn"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_nr2i6"]
+resource_name = "default"
+length = 0.7
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_7lskt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+
+[sub_resource type="Animation" id="Animation_tkr0c"]
+resource_name = "collected"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PickupSound:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -148,17 +63,19 @@ tracks/0/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PickupSound:playing")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.5333),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -170,86 +87,70 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_tkr0c"]
-resource_name = "collected"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PickupSound:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
 "values": [true]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/path = NodePath("Sprite2D:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [ExtResource("4_8xe5g")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.1333, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e68sc"]
 _data = {
-"RESET": SubResource("Animation_yhicn"),
+"default": SubResource("Animation_nr2i6"),
 "pickup": SubResource("Animation_tkr0c")
 }
 
-[node name="Apple" type="Area2D"]
+[node name="Apple" type="Area2D" groups=["apple"]]
 script = ExtResource("1_8uyh8")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ljv55")
-autoplay = "default"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_7lskt")
+hframes = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2lso8")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_qm21o")
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_e68sc")
 }
-
-[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_qm21o")
-bus = &"SFX"
+autoplay = "default"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

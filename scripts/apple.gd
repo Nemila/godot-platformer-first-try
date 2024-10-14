@@ -1,8 +1,7 @@
 extends Area2D
 
-@onready var control: Node = %Control
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		control.add_score.call_deferred(1)
-		$AnimationPlayer.play("pickup")
+		animation_player.play("pickup")

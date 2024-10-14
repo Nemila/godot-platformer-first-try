@@ -1,6 +1,5 @@
 extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		body.velocity.y = -450 * 1.5
-		$AnimatedSprite2D.play("jump")
+	if body is Player:
+		body.state_machine._on_state_transitioned('jumping', {'jump_speed': -700})
